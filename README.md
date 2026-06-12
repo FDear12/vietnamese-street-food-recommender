@@ -12,6 +12,7 @@ This system taps directly into **TikTok social trends** to recommend the most ta
 - 🕐 **Always fresh** — dataset continuously verified and updated for accuracy
 - 🤝 **Attentive service** — RAG-powered chatbot understands your preferences and guides you to the right spot
 - 🌏 **Diverse & inclusive** — covers 22+ food categories across multiple Vietnamese cities, from Đà Nẵng to Hà Nội and beyond
+<img width="940" height="477" alt="image" src="https://github.com/user-attachments/assets/d4897856-091f-4c17-bb1c-8f6d7581b280" />
 
 ## 🔧 System Pipeline
 
