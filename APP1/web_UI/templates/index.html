@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ăn Gì Đây — Khám phá ẩm thực</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #FFFDF9;
+  --bg2:      #FFF8F2;
+  --bg3:      #F5EDE3;
+  --border:   #E8DDD3;
+  --text:     #1A1208;
+  --text-sub: #5C4E3A;
+  --text-muted: #9C8B78;
+  --accent:   #E8410A;
+  --accent-lt:#FEF0EA;
+  --accent2:  #F5A623;
+  --green:    #1E8B4C;
+  --green-lt: #EDFAF3;
+  --blue:     #1A6FA8;
+  --blue-lt:  #EBF5FF;
+  --radius:   12px;
+  --radius-lg:18px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.07);
+  --shadow:    0 4px 16px rgba(0,0,0,0.09);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Be Vietnam Pro', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0 16px;
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.logo-accent { color: var(--accent); }
+
+.header-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* ── MAIN ── */
+.main-content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 28px 20px 0;
+}
+
+/* ── SEARCH ── */
+.search-section { margin-bottom: 32px; }
+
+.search-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 5px 5px 5px 16px;
+  gap: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.search-bar:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232,65,10,0.08);
+}
+
+.search-icon { font-size: 1rem; opacity: 0.45; flex-shrink: 0; }
+
+.search-bar input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+}
+
+.search-bar input::placeholder { color: var(--text-muted); }
+
+.search-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  padding: 10px 22px;
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.search-btn:hover { background: #c73508; transform: scale(1.02); }
+
+/* DETECT TOGGLE BUTTON */
+.detect-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 15px;
+  border-radius: 50px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--text-sub);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.detect-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-lt);
+}
+
+.detect-toggle-btn.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.detect-toggle-btn svg { flex-shrink: 0; }
+
+/* FILTER ROW */
+.filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trending-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.trending-label {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.tag {
+  color: var(--text-sub);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: all 0.15s;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-lt);
+}
+
+.tag-sep { color: #ccc; font-size: 0.8rem; user-select: none; }
+
+.location-filter {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 3px;
+}
+
+.loc-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 4px 12px;
+  border-radius: 24px;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.loc-btn:hover { color: var(--text); }
+
+.loc-btn.active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── DETECT PANEL (slide from left) ── */
+.detect-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.detect-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.detect-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 380px;
+  max-width: 100vw;
+  background: #fff;
+  border-right: 1px solid var(--border);
+  box-shadow: 4px 0 32px rgba(0,0,0,0.12);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.32,0.72,0,1);
+  overflow: hidden;
+}
+
+.detect-panel.open {
+  transform: translateX(0);
+}
+
+.detect-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  flex-shrink: 0;
+}
+
+.detect-panel-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.detect-panel-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.detect-close-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.detect-close-btn:hover { background: var(--accent-lt); color: var(--accent); border-color: var(--accent); }
+
+.detect-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* MODE TABS */
+.mode-tabs {
+  display: flex;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 4px;
+  gap: 3px;
+}
+
+.mode-tab {
+  flex: 1;
+  padding: 8px;
+  border-radius: 40px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.mode-tab.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(232,65,10,0.25);
+}
+
+.mode-tab:not(.active):hover {
+  color: var(--text);
+  background: rgba(0,0,0,0.04);
+}
+
+/* UPLOAD ZONE */
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 30px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg2);
+}
+
+.upload-zone:hover, .upload-zone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-lt);
+}
+
+.upload-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.upload-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.upload-btn-inner {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 7px 18px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#file-input { display: none; }
+
+/* PASTE ZONE */
+.paste-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 36px 16px;
+  text-align: center;
+  background: var(--bg2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.paste-zone.paste-active {
+  border-color: var(--accent);
+  background: var(--accent-lt);
+}
+
+.paste-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.paste-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.paste-zone kbd {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--text-sub);
+}
+
+/* PREVIEW */
+.preview-wrap {
+  position: relative;
+  display: none;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+}
+
+.preview-wrap img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.15s;
+  color: var(--text);
+}
+
+.preview-close:hover { background: #fff; }
+
+/* ANALYZE BTN */
+.analyze-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s;
+  display: none;
+}
+
+.analyze-btn.show { display: block; }
+.analyze-btn:hover { background: #c73508; }
+.analyze-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* LOADING BAR */
+.loading-bar {
+  height: 4px;
+  background: var(--bg3);
+  border-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+
+.loading-bar.show { display: block; }
+
+.loading-progress {
+  height: 100%;
+  width: 40%;
+  background: var(--accent);
+  border-radius: 10px;
+  animation: loadSlide 1.2s ease-in-out infinite;
+}
+
+@keyframes loadSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(360%); }
+}
+
+/* RESULT CARD */
+.result-card {
+  background: var(--accent-lt);
+  border: 1.5px solid rgba(232,65,10,0.2);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  display: none;
+}
+
+.result-card.show { display: block; }
+
+.result-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.result-dish {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.confidence-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.confidence-bar-bg {
+  flex: 1;
+  height: 6px;
+  background: rgba(232,65,10,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.confidence-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 6px;
+  transition: width 0.6s ease;
+}
+
+.confidence-pct {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 36px;
+}
+
+.search-from-detect-btn {
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+  padding: 9px;
+  background: #fff;
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.search-from-detect-btn.show { display: block; }
+.search-from-detect-btn:hover { background: var(--accent); color: #fff; }
+
+/* ERROR */
+.error-msg {
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  color: #B91C1C;
+  font-size: 0.8rem;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  display: none;
+}
+
+.error-msg.show { display: block; }
+
+.chat-quan-link {
+  color: var(--accent2);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  transition: color 0.15s;
+}
+.chat-quan-link:hover {
+  color: var(--accent);
+}
+/* ── RESULTS ── */
+.results-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.results-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.query-highlight { color: var(--accent); }
+
+.results-count {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ── RESTAURANT GRID ── */
+.restaurant-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.restaurant-card {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+  animation: fadeUp 0.35s ease both;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.restaurant-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(232,65,10,0.3);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+}
+
+/* CARD THUMB */
+.card-thumb {
+  position: relative;
+  width: 108px;
+  min-width: 108px;
+  min-height: 88px;
+  flex-shrink: 0;
+  background: var(--bg3);
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+  transition: transform 0.28s ease;
+}
+
+.restaurant-card:hover .card-thumb img { transform: scale(1.05); }
+
+.card-thumb.thumb-fallback { background: var(--bg3); }
+
+.thumb-placeholder {
+  font-size: 2rem;
+  opacity: 0.3;
+}
+
+.thumb-rank {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.restaurant-card:nth-child(1) .thumb-rank { background: var(--accent); }
+.restaurant-card:nth-child(2) .thumb-rank { background: var(--accent2); color: #1A1208; }
+.restaurant-card:nth-child(3) .thumb-rank { background: #999; }
+
+/* CARD BODY */
+.card-body {
+  padding: 12px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.card-address {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.card-type {
+  background: var(--accent-lt);
+  color: var(--accent);
+  border: 1px solid rgba(232,65,10,0.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* CARD META BADGES */
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.meta-rate {
+  background: #FFF9EB;
+  border-color: rgba(245,166,35,0.3);
+  color: #B86809;
+}
+
+.meta-price {
+  background: var(--bg3);
+  border-color: var(--border);
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+.meta-delivery {
+  background: var(--green-lt);
+  border-color: rgba(30,139,76,0.25);
+  color: var(--green);
+}
+
+.meta-hours {
+  background: var(--bg3);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.meta-phone {
+  background: var(--blue-lt);
+  border-color: rgba(26,111,168,0.2);
+  color: var(--blue);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.mini-tag {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+}
+
+.card-date { font-size: 0.68rem; color: #bbb; }
+
+.card-outdated {
+  font-size: 0.72rem;
+  color: #B45309;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin-top: 2px;
+}
+
+/* NO RESULTS */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.no-results-icon { font-size: 3rem; display: block; margin-bottom: 12px; }
+
+/* ── CHAT BUBBLE ── */
+.chat-bubble {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #c73508);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 6px 20px rgba(232,65,10,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 100;
+}
+
+.chat-bubble:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 28px rgba(232,65,10,0.5);
+}
+
+.chat-bubble.active { transform: scale(0.94); }
+
+.bubble-ping {
+  position: absolute;
+  top: 5px; right: 5px;
+  width: 9px; height: 9px;
+  background: var(--green);
+  border-radius: 50%;
+  border: 2px solid #fff;
+  animation: ping 2s ease-in-out infinite;
+}
+
+@keyframes ping {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+/* ── CHATBOT PANEL ── */
+.chatbot-panel {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  width: 340px;
+  height: 460px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.13);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+  transform: translateY(16px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), opacity 0.18s;
+}
+
+.chatbot-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chatbot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.chatbot-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-lt);
+  border: 1px solid rgba(232,65,10,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.chatbot-name {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.chatbot-status {
+  font-size: 0.66rem;
+  color: var(--green);
+  font-weight: 500;
+}
+
+.chatbot-close {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.chatbot-close:hover { color: var(--text); background: var(--border); }
+
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--bg);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.bot-msg, .user-msg {
+  display: flex;
+  max-width: 88%;
+}
+
+.bot-msg { align-self: flex-start; }
+.user-msg { align-self: flex-end; }
+
+.msg-bubble {
+  padding: 9px 13px;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.bot-msg .msg-bubble {
+  background: #fff;
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-msg .msg-bubble {
+  background: var(--accent);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.chatbot-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.chatbot-input-row input {
+  flex: 1;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.18s;
+}
+
+.chatbot-input-row input:focus { border-color: var(--accent); }
+.chatbot-input-row input::placeholder { color: var(--text-muted); }
+
+.chatbot-input-row button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.chatbot-input-row button:hover { background: #c73508; transform: scale(1.05); }
+
+/* TYPING INDICATOR */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 6px 4px !important;
+}
+
+.typing-indicator span {
+  width: 6px; height: 6px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .main-content { padding: 16px 14px 0; }
+  .detect-panel { width: 100vw; }
+  .chatbot-panel { width: calc(100vw - 20px); right: 10px; bottom: 88px; }
+  .chat-bubble { bottom: 16px; right: 16px; }
+  .filter-row { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- DETECT OVERLAY -->
+<div class="detect-overlay" id="detectOverlay" onclick="closeDetect()"></div>
+
+<!-- DETECT PANEL (slide from left) -->
+<div class="detect-panel" id="detectPanel">
+  <div class="detect-panel-header">
+    <div>
+      <div class="detect-panel-title">Nhận diện món ăn</div>
+      <div class="detect-panel-sub">Upload hoặc dán ảnh để tìm quán ngay</div>
+    </div>
+    <button class="detect-close-btn" onclick="closeDetect()" title="Đóng">×</button>
+  </div>
+
+  <div class="detect-body">
+    <!-- MODE TABS -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tab-upload" onclick="switchMode('upload')">
+        Upload ảnh
+      </button>
+      <button class="mode-tab" id="tab-paste" onclick="switchMode('paste')">
+        Dán (Ctrl+V)
+      </button>
+    </div>
+
+    <!-- UPLOAD MODE -->
+    <div id="upload-zone-wrap">
+      <div class="upload-zone" id="upload-zone"
+        ondragover="onDragOver(event)"
+        ondragleave="onDragLeave(event)"
+        ondrop="onDrop(event)"
+        onclick="document.getElementById('file-input').click()">
+        <div class="upload-title">Kéo thả ảnh vào đây</div>
+        <div class="upload-sub">hoặc nhấn để chọn file · JPG, PNG, WEBP</div>
+        <div class="upload-btn-inner">Chọn ảnh</div>
+      </div>
+      <input type="file" id="file-input" accept="image/*" onchange="onFileSelect(event)">
+    </div>
+
+    <!-- PASTE MODE -->
+    <div id="paste-zone-wrap" style="display:none;">
+      <div class="paste-zone" id="paste-zone" onclick="this.focus()" tabindex="0">
+        <div class="paste-title">Nhấn <kbd>Ctrl+V</kbd> để dán ảnh</div>
+        <div class="paste-sub">Chụp vùng màn hình bằng <kbd>Win+Shift+S</kbd> rồi dán vào đây</div>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="preview-wrap" id="preview-wrap">
+      <img id="preview-img" src="" alt="preview">
+      <button class="preview-close" onclick="clearPreview()" title="Xóa ảnh">×</button>
+    </div>
+
+    <!-- ANALYZE BTN -->
+    <button class="analyze-btn" id="analyze-btn" onclick="analyzeImage()">
+      Nhận diện ngay →
+    </button>
+
+    <!-- LOADING -->
+    <div class="loading-bar" id="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+
+    <!-- ERROR -->
+    <div class="error-msg" id="error-msg"></div>
+
+    <!-- RESULT -->
+    <div class="result-card" id="result-card">
+      <div class="result-label">Kết quả nhận diện</div>
+      <div class="result-dish" id="result-dish">—</div>
+      <div class="confidence-row">
+        <div class="confidence-bar-bg">
+          <div class="confidence-bar-fill" id="conf-bar" style="width:0%"></div>
+        </div>
+        <div class="confidence-pct" id="conf-pct">0%</div>
+      </div>
+      <button class="search-from-detect-btn" id="search-from-detect-btn" onclick="searchFromDetect()">
+        Tìm quán phục vụ món này →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-text">🍜 Ăn Gì <span class="logo-accent">đây nhể?</span></span>
+  </div>
+  <p class="header-sub">Khám phá ẩm thực đường phố từ TikTok & mạng xã hội</p>
+</header>
+
+<!-- MAIN -->
+<main class="main-content">
+  <section class="search-section">
+    <form action="/search" method="get" id="searchForm">
+      <div class="search-bar-row">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            name="q"
+            id="searchInput"
+            placeholder="Tìm quán ăn, món ăn... vd: mỳ quảng, bánh mì"
+            value="{{ query or '' }}"
+            autocomplete="off"
+          >
+          <button type="submit" class="search-btn">Tìm kiếm</button>
+        </div>
+        <button type="button" class="detect-toggle-btn" id="detectToggleBtn" onclick="toggleDetect()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+          Nhận diện
+        </button>
+      </div>
+      <input type="hidden" name="loc" id="locInput" value="{{ location or '' }}">
+    </form>
+
+    <div class="filter-row">
+      <div class="trending-tags">
+        <span class="trending-label">Xu hướng:</span>
+        <a href="/search?q=mỳ quảng{% if location %}&loc={{ location }}{% endif %}" class="tag">Mỳ Quảng</a>
+        <span class="tag-sep">·</span>
+        <a href="/search?q=phở{% if location %}&loc={{ location }}{% endif %}" class="tag">Phở</a>
+        <span class="tag-sep">·</span>
+        <a href="/search?q=bún mắm{% if location %}&loc={{ location }}{% endif %}" class="tag">Bún Mắm</a>
+        
+      </div>
+      <div class="location-filter">
+        <button class="loc-btn {% if not location %}active{% endif %}" onclick="setLocation('')">Tất cả</button>
+        <button class="loc-btn {% if location == 'danang' %}active{% endif %}" onclick="setLocation('danang')">📍 Đà Nẵng</button>
+        <button class="loc-btn {% if location == 'hochiminh' %}active{% endif %}" onclick="setLocation('hochiminh')">📍 TP. HCM</button>
+        <button class="loc-btn {% if location == 'hanoi' %}active{% endif %}" onclick="setLocation('hanoi')">📍 Hà Nội</button>
+      </div>
+    </div>
+  </section>
+
+  {% if results is defined %}
+  <!-- RESULTS SECTION -->
+  <section class="results-section">
+    <div class="results-header">
+      <h2 class="results-title">
+        {% if query %}
+          Kết quả cho "<span class="query-highlight">{{ query }}</span>"
+        {% else %}
+          Gợi ý hôm nay
+        {% endif %}
+      </h2>
+      <span class="results-count">{{ results|length }} quán</span>
+    </div>
+    <div class="restaurant-grid">
+      {% for r in results %}
+      <a class="restaurant-card" href="/quan/{{ r.video_id }}" target="_blank"
+         style="animation-delay: {{ loop.index0 * 0.05 }}s;">
+        <div class="card-thumb">
+          {% if r._has_frame %}
+          <img src="/frames/{{ r.hashtag_chinh }}/{{ r.video_id }}"
+               alt="{{ r._display_tenquan }}" loading="lazy"
+               onerror="this.parentElement.classList.add('thumb-fallback'); this.remove();">
+          {% else %}
+          <div class="thumb-placeholder">🍽️</div>
+          {% endif %}
+          <div class="thumb-rank">#{{ loop.index }}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-info">
+              <h3 class="card-name">{{ r._display_tenquan }}</h3>
+              <p class="card-address">{{ r._display_diachi }}</p>
+            </div>
+            {% if r.hashtag_chinh %}
+            <span class="card-type">#{{ r.hashtag_chinh }}</span>
+            {% endif %}
+          </div>
+          <div class="card-meta">
+            {% if r.rate %}<span class="meta-badge meta-rate">⭐ {{ r.rate }}</span>{% endif %}
+            {% if r.price_level %}<span class="meta-badge meta-price">{{ r.price_level }}</span>{% endif %}
+            {% if r.has_delivery %}<span class="meta-badge meta-delivery">🛵 Giao hàng</span>{% endif %}
+            {% if r.gio_mo_cua %}<span class="meta-badge meta-hours">🕐 {{ r.gio_mo_cua }}</span>{% endif %}
+            {% if r.so_dien_thoai %}<span class="meta-badge meta-phone">📞 {{ r.so_dien_thoai }}</span>{% endif %}
+          </div>
+          <div class="card-footer">
+            {% if r.hashtags_useful %}
+            <div class="card-tags">
+              {% for tag in r.hashtags_useful[:3] %}
+              <span class="mini-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            {% if r.cap_nhat_ngay_dang %}
+            <span class="card-date">{{ r.cap_nhat_ngay_dang }}</span>
+            {% elif r.ngay_dang %}
+            <span class="card-date">{{ r.ngay_dang }}</span>
+            {% endif %}
+          </div>
+          {% set ngay_raw = r.cap_nhat_ngay_dang or r.ngay_dang or "" %}
+          {% if ngay_raw and ngay_raw[:10] < "2026-05-01" %}
+          <p class="card-outdated">⚠ Thông tin có thể đã cũ</p>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+      {% if results|length == 0 %}
+      <div class="no-results">
+        <span class="no-results-icon">🍽️</span>
+        <p>Không tìm thấy quán nào. Thử từ khóa khác nhé!</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% else %}
+  <!-- DEFAULT STATE -->
+  <section class="results-section">
+    <div class="results-header">
+      <h2 class="results-title">Gợi ý quán</h2>
+    </div>
+    <div class="restaurant-grid">
+      {% for r in top_results %}
+      <a class="restaurant-card" href="/quan/{{ r.video_id }}" target="_blank"
+         style="animation-delay: {{ loop.index0 * 0.05 }}s;">
+        <div class="card-thumb">
+          {% if r._has_frame %}
+          <img src="/frames/{{ r.hashtag_chinh }}/{{ r.video_id }}"
+               alt="{{ r._display_tenquan }}" loading="lazy"
+               onerror="this.parentElement.classList.add('thumb-fallback'); this.remove();">
+          {% else %}
+          <div class="thumb-placeholder">🍽️</div>
+          {% endif %}
+          <div class="thumb-rank">#{{ loop.index }}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-info">
+              <h3 class="card-name">{{ r._display_tenquan }}</h3>
+              <p class="card-address">{{ r._display_diachi }}</p>
+            </div>
+            {% if r.hashtag_chinh %}
+            <span class="card-type">#{{ r.hashtag_chinh }}</span>
+            {% endif %}
+          </div>
+          <div class="card-meta">
+            {% if r.rate %}<span class="meta-badge meta-rate">⭐ {{ r.rate }}</span>{% endif %}
+            {% if r.price_level %}<span class="meta-badge meta-price">{{ r.price_level }}</span>{% endif %}
+            {% if r.has_delivery %}<span class="meta-badge meta-delivery">🛵 Giao hàng</span>{% endif %}
+            {% if r.gio_mo_cua %}<span class="meta-badge meta-hours">🕐 {{ r.gio_mo_cua }}</span>{% endif %}
+            {% if r.so_dien_thoai %}<span class="meta-badge meta-phone">📞 {{ r.so_dien_thoai }}</span>{% endif %}
+          </div>
+          <div class="card-footer">
+            {% if r.hashtags_useful %}
+            <div class="card-tags">
+              {% for tag in r.hashtags_useful[:3] %}
+              <span class="mini-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+            {% if r.cap_nhat_ngay_dang %}
+            <span class="card-date">{{ r.cap_nhat_ngay_dang }}</span>
+            {% elif r.ngay_dang %}
+            <span class="card-date">{{ r.ngay_dang }}</span>
+            {% endif %}
+          </div>
+          {% set ngay_raw = r.cap_nhat_ngay_dang or r.ngay_dang or "" %}
+          {% if ngay_raw and ngay_raw[:10] < "2026-05-01" %}
+          <p class="card-outdated">⚠ Thông tin có thể đã cũ</p>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</main>
+
+<!-- CHAT BUBBLE -->
+<button class="chat-bubble" id="chatBubble" onclick="toggleChat()" title="Hỏi AI gợi ý quán ăn">
+  🍜
+  <span class="bubble-ping"></span>
+</button>
+
+<!-- CHATBOT PANEL -->
+<div class="chatbot-panel" id="chatbotPanel">
+  <div class="chatbot-header">
+    <div class="chatbot-title">
+      <div class="chatbot-avatar">🍜</div>
+      <div>
+        <div class="chatbot-name"> Gợi Ý Quán</div>
+        <div class="chatbot-status">● Đang hoạt động</div>
+      </div>
+    </div>
+    <button class="chatbot-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chatbot-messages" id="chatMessages">
+    <div class="bot-msg">
+      <div class="msg-bubble">Xin chào! Tôi có thể giúp bạn tìm quán ăn ngon 🍜. Hỏi tôi bất cứ điều gì nhé!</div>
+    </div>
+    {% for sender, message in chat_history %}
+      {% if sender == 'user' %}
+      <div class="user-msg"><div class="msg-bubble">{{ message }}</div></div>
+      {% else %}
+      <div class="bot-msg"><div class="msg-bubble">{{ message|replace('\n','<br>')|safe }}</div></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="chatbot-input-row">
+    <input type="text" id="chatInput" placeholder="Hỏi về quán ăn..." autocomplete="off">
+    <button id="chatSendBtn" onclick="sendMessage()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// ── LOCATION ──
+function setLocation(loc) {
+  document.getElementById('locInput').value = loc;
+  document.getElementById('searchForm').submit();
+}
+
+// ── DETECT PANEL ──
+let detectOpen = false;
+let detectedLabel = '';
+
+function toggleDetect() {
+  detectOpen ? closeDetect() : openDetect();
+}
+
+function openDetect() {
+  detectOpen = true;
+  document.getElementById('detectPanel').classList.add('open');
+  document.getElementById('detectOverlay').classList.add('open');
+  document.getElementById('detectToggleBtn').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetect() {
+  detectOpen = false;
+  document.getElementById('detectPanel').classList.remove('open');
+  document.getElementById('detectOverlay').classList.remove('open');
+  document.getElementById('detectToggleBtn').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && detectOpen) closeDetect();
+});
+
+// ── DETECT MODE SWITCH ──
+let currentMode = 'upload';
+let currentBlob = null;
+
+function switchMode(mode) {
+  currentMode = mode;
+  document.getElementById('tab-upload').classList.toggle('active', mode === 'upload');
+  document.getElementById('tab-paste').classList.toggle('active', mode === 'paste');
+  document.getElementById('upload-zone-wrap').style.display = mode === 'upload' ? 'block' : 'none';
+  document.getElementById('paste-zone-wrap').style.display = mode === 'paste' ? 'block' : 'none';
+  clearPreview();
+  clearResult();
+}
+
+// ── UPLOAD ──
+function onDragOver(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.add('drag-over');
+}
+
+function onDragLeave() {
+  document.getElementById('upload-zone').classList.remove('drag-over');
+}
+
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) loadFile(file);
+}
+
+function onFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) loadFile(file);
+}
+
+function loadFile(file) {
+  currentBlob = file;
+  showPreview(URL.createObjectURL(file));
+}
+
+// ── PASTE ──
+document.addEventListener('paste', function(e) {
+  if (!detectOpen) return;
+  const items = e.clipboardData?.items;
+  if (!items) return;
+  for (const item of items) {
+    if (item.type.startsWith('image/')) {
+      const blob = item.getAsFile();
+      currentBlob = blob;
+      showPreview(URL.createObjectURL(blob));
+      const pz = document.getElementById('paste-zone');
+      if (pz) {
+        pz.classList.add('paste-active');
+        setTimeout(() => pz.classList.remove('paste-active'), 600);
+      }
+      break;
+    }
+  }
+});
+
+// ── PREVIEW ──
+function showPreview(url) {
+  document.getElementById('preview-img').src = url;
+  document.getElementById('preview-wrap').style.display = 'block';
+  document.getElementById('analyze-btn').classList.add('show');
+  clearResult();
+}
+
+function clearPreview() {
+  currentBlob = null;
+  document.getElementById('preview-img').src = '';
+  document.getElementById('preview-wrap').style.display = 'none';
+  document.getElementById('analyze-btn').classList.remove('show');
+  document.getElementById('file-input').value = '';
+  clearResult();
+}
+
+function clearResult() {
+  document.getElementById('result-card').classList.remove('show');
+  document.getElementById('error-msg').classList.remove('show');
+  document.getElementById('loading-bar').classList.remove('show');
+  document.getElementById('search-from-detect-btn').classList.remove('show');
+  detectedLabel = '';
+}
+
+// ── ANALYZE ──
+async function analyzeImage() {
+  if (!currentBlob) return;
+  const btn = document.getElementById('analyze-btn');
+  btn.disabled = true;
+  btn.textContent = 'Đang nhận diện...';
+  document.getElementById('loading-bar').classList.add('show');
+  document.getElementById('result-card').classList.remove('show');
+  document.getElementById('error-msg').classList.remove('show');
+  document.getElementById('search-from-detect-btn').classList.remove('show');
+
+  const formData = new FormData();
+  formData.append('image', currentBlob, 'food.jpg');
+
+  try {
+    const res = await fetch('/detect', { method: 'POST', body: formData });
+    const data = await res.json();
+    document.getElementById('loading-bar').classList.remove('show');
+    btn.disabled = false;
+    btn.textContent = 'Nhận diện ngay →';
+    if (!res.ok || data.error) {
+      showError(data.error || 'Lỗi không xác định');
+      return;
+    }
+    showResult(data);
+  } catch (err) {
+    document.getElementById('loading-bar').classList.remove('show');
+    btn.disabled = false;
+    btn.textContent = 'Nhận diện ngay →';
+    showError('Không kết nối được server: ' + err.message);
+  }
+}
+
+function showResult(data) {
+  const top1 = data.predictions[0];
+  const pct = Math.round(top1.confidence * 100);
+  detectedLabel = top1.label;
+  document.getElementById('result-dish').innerHTML = top1.label;
+  setTimeout(() => {
+    document.getElementById('conf-bar').style.width = pct + '%';
+    document.getElementById('conf-pct').textContent = pct + '%';
+  }, 100);
+  document.getElementById('result-card').classList.add('show');
+  document.getElementById('search-from-detect-btn').classList.add('show');
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = '⚠ ' + msg;
+  el.classList.add('show');
+}
+
+// ── SEARCH FROM DETECT: điền vào ô search và submit ──
+function searchFromDetect() {
+  if (!detectedLabel) return;
+  document.getElementById('searchInput').value = detectedLabel;
+  closeDetect();
+  // Small delay để panel close trước
+  setTimeout(() => document.getElementById('searchForm').submit(), 120);
+}
+
+// ── CHATBOT ──
+const panel = document.getElementById('chatbotPanel');
+const bubble = document.getElementById('chatBubble');
+
+function toggleChat() {
+  panel.classList.toggle('open');
+  bubble.classList.toggle('active');
+  if (panel.classList.contains('open')) {
+    scrollToBottom();
+    document.getElementById('chatInput').focus();
+  }
+}
+
+function scrollToBottom() {
+  const msgs = document.getElementById('chatMessages');
+  setTimeout(() => msgs.scrollTop = msgs.scrollHeight, 80);
+}
+
+document.getElementById('chatInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+
+function appendMsg(sender, text) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = sender === 'user' ? 'user-msg' : 'bot-msg';
+  const bbl = document.createElement('div');
+  bbl.className = 'msg-bubble';
+
+  // Parse Markdown link [text](url) → <a> mở tab mới
+  let html = text
+    .replace(/\n/g, '<br>')
+    .replace(
+      /\[([^\]]+)\]\((\/quan\/[^\)]+)\)/g,
+      '<a href="$2" target="_blank" rel="noopener" class="chat-quan-link">$1</a>'
+    );
+
+  bbl.innerHTML = html;
+  div.appendChild(bbl);
+  msgs.appendChild(div);
+  scrollToBottom();
+}
+
+function setLoading(on) {
+  const btn = document.getElementById('chatSendBtn');
+  btn.disabled = on;
+  btn.style.opacity = on ? '0.5' : '1';
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  appendMsg('user', text);
+  input.value = '';
+  setLoading(true);
+  const typingId = 'typing-' + Date.now();
+  const msgs = document.getElementById('chatMessages');
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'bot-msg';
+  typingDiv.id = typingId;
+  typingDiv.innerHTML = '<div class="msg-bubble typing-indicator"><span></span><span></span><span></span></div>';
+  msgs.appendChild(typingDiv);
+  scrollToBottom();
+  try {
+    const res = await fetch('/chat_ajax', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_input: text })
+    });
+    const data = await res.json();
+    document.getElementById(typingId)?.remove();
+    appendMsg('bot', data.response);
+  } catch {
+    document.getElementById(typingId)?.remove();
+    appendMsg('bot', 'Có lỗi xảy ra, thử lại nhé!');
+  } finally {
+    setLoading(false);
+  }
+}
+
+// Auto scroll on load if chat has messages
+scrollToBottom();
+</script>
+</body>
+</html>

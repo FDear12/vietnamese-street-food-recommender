@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ r._display_tenquan }} · Ăn Gì Đây</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:        #FFFDF9;
+  --bg2:       #FFF8F2;
+  --bg3:       #F5EDE3;
+  --border:    #E8DDD3;
+  --text:      #1A1208;
+  --text-sub:  #5C4E3A;
+  --text-muted:#9C8B78;
+  --accent:    #E8410A;
+  --accent-lt: #FEF0EA;
+  --accent2:   #F5A623;
+  --green:     #1E8B4C;
+  --green-lt:  #EDFAF3;
+  --blue:      #1A6FA8;
+  --blue-lt:   #EBF5FF;
+  --radius:    12px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.07);
+  --shadow:    0 4px 16px rgba(0,0,0,0.09);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Be Vietnam Pro', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 50px;
+  border: 1.5px solid var(--border);
+  background: var(--bg2);
+  color: var(--text-sub);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.back-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-lt); }
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--text);
+}
+.logo-accent { color: var(--accent); }
+
+/* ── MAIN ── */
+.main-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+/* ── BREADCRUMB ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.breadcrumb a { color: var(--text-muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb-sep { opacity: 0.5; }
+.breadcrumb-cur { color: var(--text-sub); font-weight: 500; }
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 24px;
+  margin-bottom: 28px;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-img-col { order: -1; }
+}
+
+/* LEFT INFO */
+.dish-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--accent-lt);
+  border: 1.5px solid rgba(232,65,10,0.25);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+/* ── HERO GALLERY ── */
+.hero-img-col { position: relative; cursor: pointer; }
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.85);
+  border: none;
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.15s, opacity 0.15s;
+  opacity: 0;
+  z-index: 5;
+}
+.hero-img-col:hover .gallery-arrow { opacity: 1; }
+.gallery-prev { left: 8px; }
+.gallery-next { right: 8px; }
+.gallery-arrow:hover { background: #fff; }
+
+.gallery-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  pointer-events: none;
+}
+.resto-name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.18;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.resto-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--text-sub);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.addr-pin { flex-shrink: 0; margin-top: 1px; opacity: 0.65; }
+
+/* META CHIPS */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.chip-rate     { background: #FFF9EB; border-color: rgba(245,166,35,0.4); color: #B86809; }
+.chip-phone    { background: var(--blue-lt); border-color: rgba(26,111,168,0.2); color: var(--blue); }
+.chip-delivery { background: var(--green-lt); border-color: rgba(30,139,76,0.25); color: var(--green); }
+.chip-date     { background: var(--bg3); border-color: var(--border); color: var(--text-muted); }
+
+/* REVIEW BOX */
+.review-box {
+  background: var(--bg2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* RIGHT IMAGE */
+.hero-img-col {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  aspect-ratio: 3/4;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-img-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.no-img {
+  font-size: 3.5rem;
+  opacity: 0.22;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1.5px solid var(--border);
+  margin: 24px 0;
+}
+
+/* ── SECTION ── */
+.section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ── TAG CLOUDS ── */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.htag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-sub);
+  transition: all 0.15s;
+  box-shadow: var(--shadow-sm);
+}
+
+.htag.useful {
+  border-color: rgba(232,65,10,0.25);
+  color: var(--accent);
+  background: var(--accent-lt);
+  font-weight: 600;
+}
+
+.htag.useful:hover {
+  background: #fce0d7;
+  border-color: var(--accent);
+}
+
+.htag.raw:hover {
+  border-color: #c5b8aa;
+  color: var(--text);
+}
+
+/* ── INFO CARD (bottom summary) ── */
+.info-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+.info-card-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.info-row {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0e9e2;
+  font-size: 0.83rem;
+  align-items: flex-start;
+}
+.info-row:last-child { border-bottom: none; padding-bottom: 0; }
+.info-key {
+  width: 110px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.info-val {
+  color: var(--text-sub);
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* NO DATA */
+.no-data {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
+/* ── SLIDESHOW ── */
+.slideshow-wrap {
+  position: relative;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg3);
+  margin-bottom: 24px;
+  aspect-ratio: 16/7;
+  box-shadow: var(--shadow);
+}
+.slideshow-wrap img.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.slideshow-wrap img.slide.active { opacity: 1; }
+.slide-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+.slide-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.7);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.slide-dot.active { background: #fff; }
+.slide-no-img {
+  display: flex; align-items: center; justify-content: center;
+  height: 100%; font-size: 4rem; opacity: 0.2;
+}
+
+/* ── REVIEWS ── */
+.reviews-section { margin-bottom: 24px; }
+.review-list { display: flex; flex-direction: column; gap: 10px; }
+.review-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.review-stars { display: flex; gap: 2px; }
+.review-star { color: #F5A623; font-size: 0.85rem; }
+.review-star.empty { color: #DDD; }
+.review-text {
+  font-size: 0.84rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  
+  <div class="logo-text">Ăn Gì <span class="logo-accent">đây nhể?</span></div>
+</header>
+
+<!-- MAIN -->
+<div class="main-wrap">
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="/">Trang chủ</a>
+    <span class="breadcrumb-sep">›</span>
+    {% if r.hashtag_chinh %}
+    <a href="/?q={{ r.hashtag_chinh }}">#{{ r.hashtag_chinh }}</a>
+    <span class="breadcrumb-sep">›</span>
+    {% endif %}
+    <span class="breadcrumb-cur">{{ r._display_tenquan }}</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+
+    <!-- LEFT: INFO -->
+    <div class="hero-info">
+      {% if r.hashtag_chinh %}
+      <div class="dish-badge">#{{ r.hashtag_chinh }}</div>
+      {% endif %}
+
+      <h1 class="resto-name">{{ r._display_tenquan }}</h1>
+
+      {% if r._display_diachi %}
+      <div class="resto-address">
+        <span class="addr-pin">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </span>
+        <span>{{ r._display_diachi }}</span>
+      </div>
+      {% endif %}
+
+      <!-- META CHIPS -->
+      <div class="meta-row">
+        {% if r.rate %}
+        <span class="meta-chip chip-rate">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="#F5A623" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {{ r.rate }}
+        </span>
+        {% endif %}
+        {% if r.so_dien_thoai %}
+        <span class="meta-chip chip-phone">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          {{ r.so_dien_thoai }}
+        </span>
+        {% endif %}
+        {% if r.has_delivery %}
+        <span class="meta-chip chip-delivery">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Giao hàng
+        </span>
+        {% endif %}
+        {% if r.cap_nhat_ngay_dang %}
+        <span class="meta-chip chip-date">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          {{ r.cap_nhat_ngay_dang }}
+        </span>
+        {% elif r.ngay_dang %}
+        <span class="meta-chip chip-date">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          {{ r.ngay_dang }}
+        </span>
+        {% endif %}
+      </div>
+
+      <!-- REVIEW -->
+{% if r.review and r.review|length > 0 %}
+<div class="review-list" style="margin-top:4px;">
+  {% for item in r.review %}
+  {% if item.text %}
+  <div class="review-card">
+    <div class="review-stars">
+      {% set rat = (item.rating or 0)|round|int %}
+      {% for i in range(1,6) %}
+      <span class="review-star{% if i > rat %} empty{% endif %}">★</span>
+      {% endfor %}
+    </div>
+    <div class="review-text">{{ item.text }}</div>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+{% elif r.mo_ta_rag %}
+<div class="review-box">{{ r.mo_ta_rag }}</div>
+{% else %}
+<p class="no-data" style="margin-top:8px;">Chưa có đánh giá chi tiết.</p>
+{% endif %}
+</div>
+
+    <!-- RIGHT: ẢNH CỐ ĐỊNH (frame đầu tiên) -->
+ <!-- MỚI -->
+<div class="hero-img-col" id="hero-gallery">
+  {% if r._has_frame %}
+  <img id="gallery-img"
+       src="/frames/{{ r.hashtag_chinh }}/{{ r.video_id }}"
+       alt="{{ r._display_tenquan }}"
+       onerror="this.src=''; this.parentElement.querySelector('.no-img-fb').style.display='flex'"/>
+  <div class="no-img-fb" style="display:none;">🍽️</div>
+  <button class="gallery-arrow gallery-prev" onclick="galleryStep(-1)">‹</button>
+  <button class="gallery-arrow gallery-next" onclick="galleryStep(1)">›</button>
+  <div class="gallery-counter" id="gallery-counter">1 / 1</div>
+  {% else %}
+  <div class="no-img">🍽️</div>
+  {% endif %}
+</div><!-- end hero -->
+
+ 
+
+ 
+
+  <hr class="divider"/>
+   <div class="info-card-title">Lưu ý</div>
+{% set date_str = r.cap_nhat_ngay_dang or r.ngay_dang or "" %}
+{% if date_str and date_str[:10] < "2026-05-12" %}
+<div style="background:#FFFBEB;border:1px solid #F5D07A;border-radius:8px;padding:8px 12px;font-size:0.78rem;color:#92650A;margin-bottom:12px;">
+  ⚠ Thông tin có thể đã cũ
+</div>
+{% endif %}
+  <!-- HASHTAGS USEFUL -->
+  <div style="margin-bottom:22px;">
+    <div class="section-label">Hashtag nổi bật</div>
+    {% set ht = r.hashtags_useful %}
+    {% if ht and ht|length > 0 %}
+    <div class="tag-cloud">
+      {% for tag in ht %}
+      <span class="htag useful">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-data">Không có hashtag nổi bật</p>
+    {% endif %}
+  </div>
+
+  <!-- HASHTAGS RAW -->
+  <div>
+    <div class="section-label">Tất cả hashtag</div>
+    {% set hr = r.hashtags_raw %}
+    {% if hr and hr|length > 0 %}
+    <div class="tag-cloud">
+      {% if hr is string %}
+        {% for tag in hr.split() %}
+        <span class="htag raw">{{ tag }}</span>
+        {% endfor %}
+      {% else %}
+        {% for tag in hr %}
+        <span class="htag raw">{{ tag }}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% else %}
+    <p class="no-data">Không có hashtag thô</p>
+    {% endif %}
+  </div>
+ <!-- SLIDESHOW: tất cả debug frames (từ index 1 trở đi) -->
+ 
+
+  <!-- INFO CARD -->
+  {% if r.gio_mo_cua or r.khoang_gia or r.url or r.video_url %}
+  <div class="info-card">
+    <div class="info-card-title">Thông tin chi tiết</div>
+    {% if r.gio_mo_cua %}
+    <div class="info-row">
+      <span class="info-key">Giờ mở cửa</span>
+      <span class="info-val">{{ r.gio_mo_cua }}</span>
+    </div>
+    {% endif %}
+    {% if r.khoang_gia %}
+    <div class="info-row">
+      <span class="info-key">Khoảng giá</span>
+      <span class="info-val">{{ r.khoang_gia }}</span>
+    </div>
+    {% endif %}
+    {% if r.url %}
+    <div class="info-row">
+      <span class="info-key">TikTok</span>
+      <span class="info-val"><a href="{{ r.url }}" target="_blank" style="color:var(--accent);font-weight:600;text-decoration:none;">Xem video gốc →</a></span>
+    </div>
+    {% elif r.video_url %}
+    <div class="info-row">
+      <span class="info-key">TikTok</span>
+      <span class="info-val"><a href="{{ r.video_url }}" target="_blank" style="color:var(--accent);font-weight:600;text-decoration:none;">Xem video gốc →</a></span>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+ 
+   <!-- Slideshow JS: probe frame index 1,2,3... (index 0 = ảnh cố định bên trên) -->
+ <script>
+(function(){
+  var hashtag = {{ r.hashtag_chinh | tojson }};
+  var videoId = {{ r.video_id | tojson }};
+  var hasFrame = {{ r._has_frame | tojson }};
+  if (!hasFrame || !hashtag || !videoId) return;
+
+  var baseUrl = '/frames/' + encodeURIComponent(hashtag) + '/' + encodeURIComponent(videoId);
+  var frames = [baseUrl];   // index 0 đã load sẵn
+  var current = 0;
+  var loaded = false;
+
+  // Probe frame 1..30 ngầm
+  (function probe(idx){
+    if (idx > 30) return;
+    var t = new Image();
+    t.onload = function(){ frames.push(baseUrl + '/' + idx); updateCounter(); probe(idx+1); };
+    t.onerror = function(){ probe(idx+1); };
+    t.src = baseUrl + '/' + idx;
+  })(1);
+
+  function updateCounter(){
+    var el = document.getElementById('gallery-counter');
+    if (el) el.textContent = (current+1) + ' / ' + frames.length;
+  }
+
+  window.galleryStep = function(dir){
+    if (frames.length < 2) return;
+    current = (current + dir + frames.length) % frames.length;
+    var img = document.getElementById('gallery-img');
+    if (img) img.src = frames[current];
+    updateCounter();
+  };
+})();
+</script>
+</div>
+</body>
+</html>

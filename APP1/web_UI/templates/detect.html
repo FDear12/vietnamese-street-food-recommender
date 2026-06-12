@@ -1,0 +1,871 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Kiểm tra món ăn · Ăn Gì Đà Nẵng</title><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet"/><style>
+:root {
+ --bg: #0f0f0f;
+ --bg2: #181818;
+ --bg3: #222;
+ --border: #2e2e2e;
+ --text: #f0ece4;
+ --text-muted: #888;
+ --accent: #ff6b35;
+ --accent2: #ffd166;
+ --card-bg: #1a1a1a;
+ --font-display: 'Playfair Display', Georgia, serif;
+ --font-body: 'Be Vietnam Pro', sans-serif;
+ --radius: 14px;
+ --green: #4ade80;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+ font-family: var(--font-body);
+ background: var(--bg);
+ color: var(--text);
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+}
+
+/* HEADER */
+.site-header {
+ background: linear-gradient(135deg, #1a0a00 0%, #0f0f0f 60%);
+ border-bottom: 1px solid var(--border);
+ padding: 20px 0 16px;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+}
+
+.site-header::before {
+ content: '';
+ position: absolute;
+ top: -40px; left: 50%;
+ transform: translateX(-50%);
+ width: 400px; height: 200px;
+ background: radial-gradient(ellipse, rgba(255,107,53,0.12) 0%, transparent 70%);
+ pointer-events: none;
+}
+
+.header-inner {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 16px;
+}
+
+.back-btn {
+ position: absolute;
+ left: 24px;
+ top: 50%;
+ transform: translateY(-50%);
+ background: var(--bg3);
+ border: 1px solid var(--border);
+ color: var(--text-muted);
+ padding: 7px 14px;
+ border-radius: 20px;
+ font-size: 0.8rem;
+ font-family: var(--font-body);
+ cursor: pointer;
+ text-decoration: none;
+ transition: all 0.2s;
+ display: flex;
+ align-items: center;
+ gap: 5px;
+}
+.back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.logo-text {
+ font-family: var(--font-display);
+ font-size: 1.6rem;
+ font-weight: 900;
+ color: var(--text);
+}
+.logo-accent { color: var(--accent); }
+
+.header-sub {
+ font-size: 0.78rem;
+ color: var(--text-muted);
+ font-weight: 300;
+ letter-spacing: 0.3px;
+ margin-top: 4px;
+}
+
+/* TWO-COLUMN LAYOUT */
+.two-col {
+ flex: 1;
+ display: grid;
+ grid-template-columns: 420px 1fr;
+ gap: 0;
+ min-height: 0;
+}
+
+/* LEFT PANEL */
+.left-panel {
+ border-right: 1px solid var(--border);
+ padding: 32px 28px;
+ overflow-y: auto;
+ background: var(--bg);
+}
+
+.panel-title {
+ font-family: var(--font-display);
+ font-size: 1.4rem;
+ font-weight: 700;
+ margin-bottom: 4px;
+}
+
+.panel-sub {
+ color: var(--text-muted);
+ font-size: 0.8rem;
+ margin-bottom: 24px;
+}
+
+/* MODE TABS */
+.mode-tabs {
+ display: flex;
+ background: var(--bg3);
+ border: 1px solid var(--border);
+ border-radius: 50px;
+ padding: 4px;
+ margin-bottom: 22px;
+ gap: 4px;
+}
+
+.mode-tab {
+ flex: 1;
+ padding: 9px;
+ border-radius: 40px;
+ border: none;
+ background: none;
+ color: var(--text-muted);
+ font-family: var(--font-body);
+ font-size: 0.82rem;
+ font-weight: 600;
+ cursor: pointer;
+ transition: all 0.2s;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 6px;
+}
+
+.mode-tab.active {
+ background: var(--accent);
+ color: #fff;
+ box-shadow: 0 2px 12px rgba(255,107,53,0.35);
+}
+
+.mode-tab:not(.active):hover {
+ color: var(--text);
+ background: rgba(255,255,255,0.05);
+}
+
+/* UPLOAD ZONE */
+.upload-zone {
+ border: 2px dashed var(--border);
+ border-radius: var(--radius);
+ padding: 36px 20px;
+ text-align: center;
+ cursor: pointer;
+ transition: all 0.25s;
+ background: var(--card-bg);
+ position: relative;
+ overflow: hidden;
+}
+
+.upload-zone::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(ellipse at center, rgba(255,107,53,0.04) 0%, transparent 70%);
+ opacity: 0;
+ transition: opacity 0.25s;
+}
+
+.upload-zone:hover, .upload-zone.drag-over {
+ border-color: var(--accent);
+ background: rgba(255,107,53,0.05);
+}
+
+.upload-zone:hover::before, .upload-zone.drag-over::before { opacity: 1; }
+
+
+
+.upload-title {
+ font-family: var(--font-display);
+ font-size: 1rem;
+ font-weight: 700;
+ margin-bottom: 4px;
+}
+
+.upload-sub {
+ font-size: 0.76rem;
+ color: var(--text-muted);
+ margin-bottom: 14px;
+}
+
+.upload-btn-inner {
+ display: inline-block;
+ background: var(--accent);
+ color: #fff;
+ padding: 8px 20px;
+ border-radius: 30px;
+ font-size: 0.82rem;
+ font-weight: 600;
+ cursor: pointer;
+ transition: background 0.2s;
+}
+
+.upload-btn-inner:hover { background: #e55a25; }
+
+#file-input { display: none; }
+
+/* PASTE ZONE */
+.paste-zone {
+ border: 2px dashed var(--border);
+ border-radius: var(--radius);
+ padding: 48px 20px;
+ text-align: center;
+ background: var(--card-bg);
+ transition: all 0.25s;
+ cursor: default;
+}
+
+.paste-zone.paste-active {
+ border-color: var(--accent);
+ background: rgba(255,107,53,0.06);
+ box-shadow: 0 0 0 4px rgba(255,107,53,0.08);
+}
+
+
+
+.paste-title {
+ font-family: var(--font-display);
+ font-size: 1rem;
+ font-weight: 700;
+ margin-bottom: 8px;
+}
+
+.paste-sub {
+ font-size: 0.76rem;
+ color: var(--text-muted);
+ line-height: 1.6;
+}
+
+kbd {
+ display: inline-block;
+ background: var(--bg3);
+ border: 1px solid #444;
+ border-radius: 5px;
+ padding: 1px 7px;
+ font-size: 0.75rem;
+ font-family: monospace;
+ color: var(--accent2);
+ box-shadow: 0 2px 0 #333;
+}
+
+/* PREVIEW */
+.preview-wrap {
+ display: none;
+ margin-top: 16px;
+ position: relative;
+}
+
+.preview-img-box {
+ border-radius: var(--radius);
+ overflow: hidden;
+ border: 1px solid var(--border);
+ background: #000;
+ max-height: 240px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+#preview-img {
+ max-width: 100%;
+ max-height: 240px;
+ object-fit: contain;
+ display: block;
+}
+
+.preview-close {
+ position: absolute;
+ top: 8px; right: 8px;
+ width: 26px; height: 26px;
+ border-radius: 50%;
+ background: rgba(0,0,0,0.7);
+ border: none;
+ color: #fff;
+ cursor: pointer;
+ font-size: 0.85rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ transition: background 0.2s;
+}
+
+.preview-close:hover { background: rgba(255,107,53,0.8); }
+
+/* ANALYZE BTN */
+.analyze-btn {
+ width: 100%;
+ margin-top: 14px;
+ padding: 13px;
+ border-radius: 50px;
+ background: linear-gradient(135deg, var(--accent), #e55a25);
+ border: none;
+ color: #fff;
+ font-family: var(--font-body);
+ font-size: 0.95rem;
+ font-weight: 700;
+ cursor: pointer;
+ transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+ display: none;
+ align-items: center;
+ justify-content: center;
+ gap: 8px;
+ box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+}
+
+.analyze-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(255,107,53,0.45); }
+.analyze-btn:active { transform: scale(0.98); }
+.analyze-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.analyze-btn.show { display: flex; }
+
+/* LOADING */
+.loading-bar {
+ display: none;
+ margin-top: 14px;
+ height: 3px;
+ background: var(--bg3);
+ border-radius: 10px;
+ overflow: hidden;
+}
+.loading-bar.show { display: block; }
+
+.loading-progress {
+ height: 100%;
+ background: linear-gradient(90deg, var(--accent), var(--accent2));
+ border-radius: 10px;
+ animation: loadPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes loadPulse {
+ 0% { width: 0%; margin-left: 0; }
+ 50% { width: 70%; margin-left: 15%; }
+ 100% { width: 0%; margin-left: 100%; }
+}
+
+/* ERROR */
+.error-msg {
+ display: none;
+ margin-top: 14px;
+ padding: 12px 14px;
+ background: rgba(239,68,68,0.1);
+ border: 1px solid rgba(239,68,68,0.3);
+ border-radius: 10px;
+ color: #f87171;
+ font-size: 0.8rem;
+}
+.error-msg.show { display: block; }
+
+/* RESULT — top-1 only */
+.result-card {
+ display: none;
+ margin-top: 20px;
+ background: var(--card-bg);
+ border: 1px solid var(--border);
+ border-radius: var(--radius);
+ overflow: hidden;
+ animation: fadeUp 0.4s ease both;
+}
+.result-card.show { display: block; }
+
+@keyframes fadeUp {
+ from { opacity: 0; transform: translateY(12px); }
+ to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+ background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(255,107,53,0.05));
+ border-bottom: 1px solid var(--border);
+ padding: 12px 16px;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+}
+
+
+
+.result-label {
+ font-size: 0.72rem;
+ color: var(--text-muted);
+ font-weight: 500;
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+}
+
+.result-body { padding: 16px 18px; }
+
+.result-dish {
+ font-family: var(--font-display);
+ font-size: 1.5rem;
+ font-weight: 700;
+ color: var(--text);
+ margin-bottom: 10px;
+}
+.result-dish span { color: var(--accent); }
+
+.confidence-row {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+}
+
+.confidence-bar-bg {
+ flex: 1;
+ height: 6px;
+ background: var(--bg3);
+ border-radius: 10px;
+ overflow: hidden;
+}
+
+.confidence-bar-fill {
+ height: 100%;
+ background: linear-gradient(90deg, var(--accent), var(--accent2));
+ border-radius: 10px;
+ transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.confidence-pct {
+ font-size: 0.88rem;
+ font-weight: 700;
+ color: var(--accent2);
+ white-space: nowrap;
+ min-width: 42px;
+ text-align: right;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+ padding: 32px 28px;
+ overflow-y: auto;
+ background: var(--bg2);
+ display: flex;
+ flex-direction: column;
+}
+
+.right-empty {
+ flex: 1;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ color: var(--text-muted);
+ gap: 12px;
+ opacity: 0.6;
+}
+
+
+
+.right-empty-text {
+ font-size: 0.88rem;
+ line-height: 1.6;
+ max-width: 240px;
+}
+
+.right-header {
+ display: none;
+ margin-bottom: 20px;
+}
+
+.right-header.show { display: block; }
+
+.right-header-label {
+ font-size: 0.72rem;
+ color: var(--text-muted);
+ text-transform: uppercase;
+ letter-spacing: 0.5px;
+ font-weight: 600;
+ margin-bottom: 6px;
+}
+
+.right-header-dish {
+ font-family: var(--font-display);
+ font-size: 1.3rem;
+ font-weight: 700;
+ color: var(--accent);
+ margin-bottom: 4px;
+}
+
+.right-header-count {
+ font-size: 0.78rem;
+ color: var(--text-muted);
+}
+
+/* RESTAURANT LIST */
+.restaurant-list {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+}
+
+.restaurant-card {
+ background: var(--card-bg);
+ border: 1px solid var(--border);
+ border-radius: var(--radius);
+ padding: 14px 16px;
+ display: flex;
+ gap: 14px;
+ align-items: flex-start;
+ transition: border-color 0.2s, transform 0.2s;
+ animation: fadeUp 0.35s ease both;
+ cursor: pointer;
+ text-decoration: none;
+ color: inherit;
+}
+
+.restaurant-card:hover {
+ border-color: rgba(255,107,53,0.4);
+ transform: translateX(3px);
+ background: rgba(255,107,53,0.03);
+}
+
+.restaurant-thumb {
+ width: 56px;
+ height: 56px;
+ border-radius: 10px;
+ background: var(--bg3);
+ flex-shrink: 0;
+ overflow: hidden;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1.5rem;
+ border: 1px solid var(--border);
+}
+
+.restaurant-thumb img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+}
+
+.restaurant-info { flex: 1; min-width: 0; }
+
+.restaurant-name {
+ font-family: var(--font-display);
+ font-size: 0.95rem;
+ font-weight: 700;
+ margin-bottom: 3px;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+}
+
+.restaurant-dish {
+ font-size: 0.72rem;
+ color: var(--accent);
+ font-weight: 600;
+ margin-bottom: 4px;
+ text-transform: uppercase;
+ letter-spacing: 0.3px;
+}
+
+.restaurant-addr {
+ font-size: 0.75rem;
+ color: var(--text-muted);
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+}
+
+.restaurant-meta {
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ margin-top: 5px;
+}
+
+.restaurant-rate {
+ font-size: 0.72rem;
+ color: var(--accent2);
+ font-weight: 600;
+}
+
+.restaurant-views {
+ font-size: 0.7rem;
+ color: var(--text-muted);
+}
+
+/* loading skeleton */
+.skeleton-card {
+ background: var(--card-bg);
+ border: 1px solid var(--border);
+ border-radius: var(--radius);
+ padding: 14px 16px;
+ display: flex;
+ gap: 14px;
+ align-items: center;
+}
+
+.sk {
+ background: linear-gradient(90deg, var(--bg3) 25%, #2a2a2a 50%, var(--bg3) 75%);
+ background-size: 200% 100%;
+ animation: shimmer 1.4s infinite;
+ border-radius: 6px;
+}
+
+@keyframes shimmer {
+ 0% { background-position: 200% 0; }
+ 100% { background-position: -200% 0; }
+}
+
+.sk-thumb { width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0; }
+.sk-lines { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.sk-line { height: 10px; }
+.sk-line-short { width: 60%; }
+.sk-line-long { width: 90%; }
+.sk-line-mid { width: 75%; }
+
+@media (max-width: 900px) {
+ .two-col {
+ grid-template-columns: 1fr;
+ }
+ .left-panel {
+ border-right: none;
+ border-bottom: 1px solid var(--border);
+ }
+}
+
+@media (max-width: 600px) {
+ .back-btn { display: none; }
+ .left-panel, .right-panel { padding: 20px 14px; }
+ .panel-title { font-size: 1.2rem; }
+}
+</style></head><body><header class="site-header"><a href="/" class="back-btn">← Trang chủ</a><div><div class="header-inner"><div class="logo-text">🍜 Ăn Gì <span class="logo-accent">đây nhể?</span></div></div><div class="header-sub">Nhận diện món ăn bằng AI · EfficientNetV2-S</div></div></header><div class="two-col"><!-- ═══ LEFT PANEL ═══ --><div class="left-panel"><h1 class="panel-title"> Kiểm tra món ăn</h1><p class="panel-sub">Tải ảnh lên — AI nhận diện, gợi ý quán ngay</p><!-- MODE TABS --><div class="mode-tabs"><button class="mode-tab active" id="tab-upload" onclick="switchMode('upload')">Tải ảnh lên
+ </button><button class="mode-tab" id="tab-paste" onclick="switchMode('paste')">Dán ảnh (Ctrl+V)
+ </button></div><!-- UPLOAD MODE --><div id="upload-zone-wrap"><div class="upload-zone" id="upload-zone"
+ ondragover="onDragOver(event)"
+ ondragleave="onDragLeave(event)"
+ ondrop="onDrop(event)"
+ onclick="document.getElementById('file-input').click()"><div class="upload-title">Kéo thả ảnh vào đây</div><div class="upload-sub">hoặc nhấn để chọn file · JPG, PNG, WEBP</div><div class="upload-btn-inner">Chọn ảnh</div></div><input type="file" id="file-input" accept="image/*" onchange="onFileSelect(event)"/></div><!-- PASTE MODE --><div id="paste-zone-wrap" style="display:none;"><div class="paste-zone" id="paste-zone"><div class="paste-title">Nhấn <kbd>Ctrl+V</kbd> để dán ảnh</div><div class="paste-sub">Chụp vùng màn hình bằng <kbd>Win+Shift+S</kbd> rồi dán vào đây</div></div></div><!-- PREVIEW --><div class="preview-wrap" id="preview-wrap"><div class="preview-img-box"><img id="preview-img" src="" alt="preview"/></div><button class="preview-close" onclick="clearPreview()" title="Xóa ảnh">×</button></div><!-- ANALYZE BTN --><button class="analyze-btn" id="analyze-btn" onclick="analyzeImage()">Nhận diện ngay
+ </button><!-- LOADING --><div class="loading-bar" id="loading-bar"><div class="loading-progress"></div></div><!-- ERROR --><div class="error-msg" id="error-msg"></div><!-- RESULT — top-1 only --><div class="result-card" id="result-card"><div class="result-header"><div class="result-label">Kết quả nhận diện</div></div><div class="result-body"><div class="result-dish" id="result-dish">—</div><div class="confidence-row"><div class="confidence-bar-bg"><div class="confidence-bar-fill" id="conf-bar" style="width:0%"></div></div><div class="confidence-pct" id="conf-pct">0%</div></div></div></div></div><!-- ═══ RIGHT PANEL ═══ --><div class="right-panel" id="right-panel"><!-- Empty state --><div class="right-empty" id="right-empty"><div class="right-empty-text">Nhận diện món ăn để xem danh sách quán gợi ý tại đây</div></div><!-- Header khi có kết quả --><div class="right-header" id="right-header"><div class="right-header-label">Quán gợi ý cho món</div><div class="right-header-dish" id="right-header-dish">—</div><div class="right-header-count" id="right-header-count"></div></div><!-- List --><div class="restaurant-list" id="restaurant-list"></div></div></div><script>
+let currentMode = 'upload';
+let currentBlob = null;
+
+// ── MODE SWITCH ──
+function switchMode(mode) {
+ currentMode = mode;
+ document.getElementById('tab-upload').classList.toggle('active', mode === 'upload');
+ document.getElementById('tab-paste').classList.toggle('active', mode === 'paste');
+ document.getElementById('upload-zone-wrap').style.display = mode === 'upload' ? 'block' : 'none';
+ document.getElementById('paste-zone-wrap').style.display = mode === 'paste' ? 'block' : 'none';
+ clearPreview();
+ clearResult();
+}
+
+// ── UPLOAD ──
+function onDragOver(e) {
+ e.preventDefault();
+ document.getElementById('upload-zone').classList.add('drag-over');
+}
+
+function onDragLeave(e) {
+ document.getElementById('upload-zone').classList.remove('drag-over');
+}
+
+function onDrop(e) {
+ e.preventDefault();
+ document.getElementById('upload-zone').classList.remove('drag-over');
+ const file = e.dataTransfer.files[0];
+ if (file && file.type.startsWith('image/')) loadFile(file);
+}
+
+function onFileSelect(e) {
+ const file = e.target.files[0];
+ if (file) loadFile(file);
+}
+
+function loadFile(file) {
+ currentBlob = file;
+ showPreview(URL.createObjectURL(file));
+}
+
+// ── PASTE ──
+document.addEventListener('paste', function(e) {
+ const items = e.clipboardData?.items;
+ if (!items) return;
+ for (const item of items) {
+ if (item.type.startsWith('image/')) {
+ const blob = item.getAsFile();
+ currentBlob = blob;
+ showPreview(URL.createObjectURL(blob));
+ const pz = document.getElementById('paste-zone');
+ if (pz) {
+ pz.classList.add('paste-active');
+ setTimeout(() => pz.classList.remove('paste-active'), 600);
+ }
+ break;
+ }
+ }
+});
+
+// ── PREVIEW ──
+function showPreview(url) {
+ document.getElementById('preview-img').src = url;
+ document.getElementById('preview-wrap').style.display = 'block';
+ document.getElementById('analyze-btn').classList.add('show');
+ clearResult();
+}
+
+function clearPreview() {
+ currentBlob = null;
+ document.getElementById('preview-img').src = '';
+ document.getElementById('preview-wrap').style.display = 'none';
+ document.getElementById('analyze-btn').classList.remove('show');
+ document.getElementById('file-input').value = '';
+ clearResult();
+}
+
+function clearResult() {
+ document.getElementById('result-card').classList.remove('show');
+ document.getElementById('error-msg').classList.remove('show');
+ document.getElementById('loading-bar').classList.remove('show');
+ resetRightPanel();
+}
+
+// ── ANALYZE ──
+async function analyzeImage() {
+ if (!currentBlob) return;
+ const btn = document.getElementById('analyze-btn');
+ btn.disabled = true;
+ btn.innerHTML = ' Đang nhận diện...';
+ document.getElementById('loading-bar').classList.add('show');
+ document.getElementById('result-card').classList.remove('show');
+ document.getElementById('error-msg').classList.remove('show');
+ resetRightPanel();
+ const formData = new FormData();
+ formData.append('image', currentBlob, 'food.jpg');
+ try {
+ const res = await fetch('/detect', { method: 'POST', body: formData });
+ const data = await res.json();
+ document.getElementById('loading-bar').classList.remove('show');
+ btn.disabled = false;
+ btn.innerHTML = 'Nhận diện ngay';
+ if (!res.ok || data.error) {
+ showError(data.error || 'Lỗi không xác định');
+ return;
+ }
+ showResult(data);
+ } catch (err) {
+ document.getElementById('loading-bar').classList.remove('show');
+ btn.disabled = false;
+ btn.innerHTML = 'Nhận diện ngay';
+ showError('Không kết nối được server: ' + err.message);
+ }
+}
+
+// ── SHOW RESULT (top-1 only) ──
+function showResult(data) {
+ const top1 = data.predictions[0];
+ const pct = Math.round(top1.confidence * 100);
+ document.getElementById('result-dish').innerHTML =
+ '<span>' + top1.label + '</span>';
+ setTimeout(() => {
+ document.getElementById('conf-bar').style.width = pct + '%';
+ document.getElementById('conf-pct').textContent = pct + '%';
+ }, 100);
+ document.getElementById('result-card').classList.add('show');
+ // Fetch quán bên phải
+ loadRestaurants(top1.label);
+}
+
+function showError(msg) {
+ const el = document.getElementById('error-msg');
+ el.textContent = ' ' + msg;
+ el.classList.add('show');
+}
+
+// ── RIGHT PANEL ──
+function resetRightPanel() {
+ document.getElementById('right-empty').style.display = 'flex';
+ document.getElementById('right-header').classList.remove('show');
+ document.getElementById('restaurant-list').innerHTML = '';
+}
+
+function showSkeletons() {
+ const list = document.getElementById('restaurant-list');
+ list.innerHTML = Array(6).fill(0).map(() => `
+ <div class="skeleton-card"><div class="sk sk-thumb"></div><div class="sk-lines"><div class="sk sk-line sk-line-long"></div><div class="sk sk-line sk-line-short"></div><div class="sk sk-line sk-line-mid"></div></div></div> `).join('');
+}
+
+async function loadRestaurants(label) {
+ // Ẩn empty state, show skeletons
+ document.getElementById('right-empty').style.display = 'none';
+ document.getElementById('right-header').classList.remove('show');
+ showSkeletons();
+ try {
+ const res = await fetch('/search_json?q=' + encodeURIComponent(label) + '&limit=10');
+ if (!res.ok) throw new Error('search failed');
+ const records = await res.json();
+ renderRestaurants(label, records);
+ } catch (err) {
+ // Fallback: dùng /search page rồi lấy data từ link
+ // Hiển thị link thay thế nếu không có /search_json
+ renderFallback(label);
+ }
+}
+
+function renderRestaurants(label, records) {
+ const list = document.getElementById('restaurant-list');
+ // Update header
+ const header = document.getElementById('right-header');
+ document.getElementById('right-header-dish').textContent = label;
+ document.getElementById('right-header-count').textContent =
+ records.length > 0
+ ? `Tìm thấy ${records.length} quán liên quan`
+ : 'Không tìm thấy quán nào';
+ header.classList.add('show');
+ if (records.length === 0) {
+ list.innerHTML = `<div style="text-align:center;color:var(--text-muted);padding:40px 0;font-size:0.85rem;"> Không tìm thấy quán phục vụ món này <br><a href="/search?q=${encodeURIComponent(label)}" style="color:var(--accent);text-decoration:none;font-weight:600;display:inline-block;margin-top:8px;">Thử tìm kiếm thủ công →</a></div>`;
+ return;
+ }
+ list.innerHTML = records.map((r, i) => {
+ const name = r.tenquan || 'Quán ăn';
+ const addr = r.diachi || '';
+ const dish = r.hashtag_chinh || label;
+ const rate = r.rate ? ' ' + r.rate : '';
+ const views = r.views ? ' ' + r.views : '';
+ const vid = r.video_id || '';
+ const hash = r.hashtag_chinh || '';
+ const imgSrc = (vid && hash) ? `/frames/${hash}/${vid}` : '';
+ const thumbHtml = imgSrc
+ ? `<div class="restaurant-thumb"><img src="${imgSrc}" onerror="this.parentElement.innerHTML='🍽️'" alt=""/></div>`
+ : `<div class="restaurant-thumb">🍽️</div>`;
+ const detailUrl = vid ? `/quan/${vid}` : `/search?q=${encodeURIComponent(name)}`;
+ return `
+ <a class="restaurant-card" href="${detailUrl}" target="_blank" style="animation-delay:${i * 0.05}s"> ${thumbHtml}
+ <div class="restaurant-info"><div class="restaurant-name" title="${name}">${name}</div><div class="restaurant-dish">${dish}</div><div class="restaurant-addr" title="${addr}">${addr || 'Đà Nẵng'}</div><div class="restaurant-meta"> ${rate ? `<span class="restaurant-rate">${rate}</span>` : ''}
+ ${views ? `<span class="restaurant-views">${views}</span>` : ''}
+ </div></div></a>`;
+ }).join('');
+}
+
+function renderFallback(label) {
+ // Nếu server chưa có /search_json, show link thay thế
+ const list = document.getElementById('restaurant-list');
+ const header = document.getElementById('right-header');
+ document.getElementById('right-header-dish').textContent = label;
+ document.getElementById('right-header-count').textContent = 'Nhấn để xem kết quả tìm kiếm';
+ header.classList.add('show');
+ list.innerHTML = `
+ <div style="text-align:center;padding:48px 20px;"><div style="font-size:2rem;margin-bottom:12px;"></div><div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;line-height:1.6;"> Tìm thấy món <strong style="color:var(--text)">${label}</strong><br> Nhấn bên dưới để xem danh sách quán
+ </div><a href="/search?q=${encodeURIComponent(label)}"
+ style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:10px 24px;border-radius:30px;font-weight:600;font-size:0.85rem;text-decoration:none;transition:background 0.2s;"
+ onmouseover="this.style.background='#e55a25'" onmouseout="this.style.background='var(--accent)'">Xem quán phục vụ ${label}
+ </a></div>`;
+}
+</script></body></html>
