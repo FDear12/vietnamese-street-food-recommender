@@ -12,14 +12,16 @@ This system taps directly into **TikTok social trends** to recommend the most ta
 - 🕐 **Always fresh** — dataset continuously verified and updated for accuracy
 - 🤝 **Attentive service** — RAG-powered chatbot understands your preferences and guides you to the right spot
 - 🌏 **Diverse & inclusive** — covers 22+ food categories across multiple Vietnamese cities, from Đà Nẵng to Hà Nội and beyond
+
 <img width="940" height="477" alt="image" src="https://github.com/user-attachments/assets/d4897856-091f-4c17-bb1c-8f6d7581b280" />
 
 ## 🔧 System Pipeline
 
 <img width="673" height="821" alt="pipeline" src="https://github.com/user-attachments/assets/1b198a65-5388-4ebf-a274-9d567abd6c48" />
 
-## F
+## 📁 Project Structure
 
+```
 APP/
 ├── tiktok_crawler/        # 1-3: crawl, download, OCR
 │   └── metadata.json
@@ -29,6 +31,7 @@ APP/
     ├── app.py
     ├── templates/
     └── static/
+```
 
 ## 📦 Dataset
 
@@ -36,5 +39,6 @@ Video frame data used for restaurant extraction is publicly available on Kaggle:
 
 👉 [TikTok Video Frame Filter Dataset](https://www.kaggle.com/datasets/nnhnhh/data-video-frame-filter)
 
+## 📬 Contact
 
-Email:dnhn2k4@gmail.com
+Email: dnhn2k4@gmail.com
