@@ -18,6 +18,19 @@ This system taps directly into **TikTok social trends** to recommend the most ta
 
 <img width="673" height="821" alt="pipeline" src="https://github.com/user-attachments/assets/1b198a65-5388-4ebf-a274-9d567abd6c48" />
 
+## F
+
+├── tiktok_crawler/              # 1-3: crawl, download, OCR
+│   ├── metadata.json
+├── /             
+│   └── data_v2/
+│       └── data.json
+├── web_UI/                        # Flask web app
+│   ├── app.py
+│   ├── templates/
+│   └── static/
+
+
 ## 📦 Dataset
 
 Video frame data used for restaurant extraction is publicly available on Kaggle:
