@@ -23,3 +23,6 @@ This system taps directly into **TikTok social trends** to recommend the most ta
 Video frame data used for restaurant extraction is publicly available on Kaggle:
 
 👉 [TikTok Video Frame Filter Dataset](https://www.kaggle.com/datasets/nnhnhh/data-video-frame-filter)
+
+
+Email:dnhn2k4@gmail.com
