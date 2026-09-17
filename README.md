@@ -41,4 +41,4 @@ Video frame data used for restaurant extraction is publicly available on Kaggle:
 
 ## 📬 Contact
 
-Email: dnhn2k4@gmail.com
+Email: dnhn2k4@gmail.com <3
